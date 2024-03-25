@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notepad</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+  </head>
+  <body onload="load()">
+    <div id="lodingscrenid" class="w-full h-screen bg-[url('./img/load.gif')] bg-center bg-no-repeat"></div>
+
+
+
+
+
+    <div class="alert-container hidden w-full h-screen ">
+      <div class="alert-box">
+        <p class="text-lg font-semibold">Alert!</p>
+        <p>Please fill out all fields.</p>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="alertclose()">Close</button>
+      </div>
+    </div>
+    <div class="alert-container2 hidden w-full h-screen ">
+      <div class="alert-box">
+        <p class="text-lg font-semibold">Alert!</p>
+        <p>Did you want to Remove all Note.</p>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="alertcl()">Close</button>
+        <button class="mt-4 bg-[#FFC700] hover:bg-[#FFC700] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="alertok()">Okay</button>
+      </div>
+    </div>
+
+
+
+    <header>
+      <nav
+        class="bg-[#FFC700] text-white py-3 lg:px-10 px-3 flex justify-between"
+      >
+        <div class="text-lg font-semibold flex gap-3">
+          <i class="fa-regular fa-note-sticky my-auto"></i
+          ><span class="my-auto">Notepad</span>
+        </div>
+        <div id="nav_links_show" class="md:block hidden nav_links">
+          <div
+            onclick="mobnavhide()"
+            class="text-end mr-5 mt-5 md:hidden block"
+          >
+            <i class="fa-solid fa-xmark text-4xl text-end"></i>
+          </div>
+          <ul class="flex gap-5">
+            <li onclick="addnote()" class="flex gap-3 cursor-pointer py-auto">
+              <i class="my-auto fa-solid fa-plus"></i>
+              <span class="my-auto">Add Note</span>
+            </li>
+            <!-- <li>
+              <button onclick="darktheme()">
+                <i id="sun" class="fa-solid fa-sun text-xl"></i>
+                <i id="moon" class="fa-solid fa-moon text-xl hidden"></i>
+              </button>
+            </li> -->
+          </ul>
+        </div>
+
+        <div onclick="nav_show()" class="md:hidden block cursor-pointer">
+          <i class="fa-solid fa-bars text-3xl"></i>
+        </div>
+      </nav>
+    </header>
+
+    <div
+      class="container mx-auto my-3 flex lg:justify-end justify-center gap-3"
+    >
+      <h1
+        id="clock"
+        class="text-2xl font-semibold md:text-end text-center text-[#4CCD99]"
+      ></h1>
+      <i
+        class="fa-solid fa-trash text-red-500 text-lg my-auto cursor-pointer"
+        onclick="removeall()"
+      ></i>
+    </div>
+    <hr class="my-2" />
+
+    <!-- add note form start -->
+    <div id="noteform" class="hidden my-5">
+      <div
+        class="max-w-md mx-auto bg-white rounded-xl overflow-hidden shadow-md md:max-w-2xl"
+      >
+        <div class="px-4 py-2 bg-[#FFC700] text-white flex justify-between">
+          <div>
+            <h1 class="text-lg font-bold">Notepad</h1>
+            <p class="text-sm">Keep your notes organized.</p>
+          </div>
+          <div onclick="noteremove()" class="my-auto cursor-pointer">
+            <i class="fa-solid fa-xmark text-2xl"></i>
+          </div>
+        </div>
+        <form>
+          <div class="px-4 py-2">
+            <label for="" class="capitalize text-lg font-semibold">title</label>
+            <input
+              type="text"
+              id="notetitle"
+              class="border font-medium w-full px-2 py-2 border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Start typing..."
+              required
+            />
+          </div>
+          <div class="px-4 py-2">
+            <label for="" class="capitalize text-lg font-semibold"
+              >description</label
+            >
+            <textarea
+              class="border w-full font-medium px-2 py-2 border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              id="notedescription"
+              placeholder="Start typing..."
+              required
+            ></textarea>
+          </div>
+          <div class="mx-auto px-4 py-2">
+            <button
+              id="notesubmit"
+              class="px-4 py-2 text-lg font-semibold text-white bg-[#FFC700] hover:bg-[#ffbb00] rounded"
+            >
+              submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- end form  -->
+
+    <main class="container mx-auto">
+      <ul
+        id="appendnote"
+        class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5"
+      ></ul>
+    </main>
+
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
